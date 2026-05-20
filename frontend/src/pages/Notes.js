@@ -2,19 +2,15 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function Notes() {
-
   const [notes, setNotes] = useState([]);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
-  const getToken = () => localStorage.getItem("token");
+  const token = localStorage.getItem("token");
 
-  // FETCH NOTES
+  // Fetch Notes
   const fetchNotes = async () => {
     try {
-
-      const token = getToken();
-
       const res = await axios.get(
         "https://notes-app-r8xt.onrender.com/api/notes",
         {
@@ -31,12 +27,9 @@ export default function Notes() {
     }
   };
 
-  // ADD NOTE
+  // Add Note
   const addNote = async () => {
     try {
-
-      const token = getToken();
-
       await axios.post(
         "https://notes-app-r8xt.onrender.com/api/notes",
         {
@@ -60,12 +53,9 @@ export default function Notes() {
     }
   };
 
-  // DELETE NOTE
+  // Delete Note
   const deleteNote = async (id) => {
     try {
-
-      const token = getToken();
-
       await axios.delete(
         `https://notes-app-r8xt.onrender.com/api/notes/${id}`,
         {
@@ -82,7 +72,7 @@ export default function Notes() {
     }
   };
 
-  // LOGOUT
+  // Logout
   const logout = () => {
     localStorage.removeItem("token");
     window.location.href = "/";
@@ -94,12 +84,9 @@ export default function Notes() {
 
   return (
     <div>
-
       <h2>My Notes</h2>
 
-      <button onClick={logout}>
-        Logout
-      </button>
+      <button onClick={logout}>Logout</button>
 
       <br /><br />
 
@@ -115,15 +102,12 @@ export default function Notes() {
         onChange={(e) => setContent(e.target.value)}
       />
 
-      <button onClick={addNote}>
-        Add
-      </button>
+      <button onClick={addNote}>Add</button>
 
       <hr />
 
       {notes.map((n) => (
         <div key={n._id}>
-
           <h3>{n.title}</h3>
 
           <p>{n.content}</p>
@@ -133,10 +117,8 @@ export default function Notes() {
           </button>
 
           <hr />
-
         </div>
       ))}
-
     </div>
   );
 }
