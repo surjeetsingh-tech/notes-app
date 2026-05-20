@@ -16,7 +16,7 @@ export default function Notes() {
       const token = getToken();
 
       const res = await axios.get(
-        "http://localhost:5000/api/notes",
+        "https://notes-app-r8xt.onrender.com/api/notes",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -38,7 +38,7 @@ export default function Notes() {
       const token = getToken();
 
       await axios.post(
-        "http://localhost:5000/api/notes",
+        "https://notes-app-r8xt.onrender.com/api/notes",
         {
           title,
           content,
@@ -67,7 +67,7 @@ export default function Notes() {
       const token = getToken();
 
       await axios.delete(
-        `http://localhost:5000/api/notes/${id}`,
+        `https://notes-app-r8xt.onrender.com/api/notes/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -84,59 +84,4 @@ export default function Notes() {
 
   // LOGOUT
   const logout = () => {
-    localStorage.removeItem("token");
-    window.location.href = "/";
-  };
-
-  useEffect(() => {
-    fetchNotes();
-  }, []);
-
-  return (
-    <div>
-
-      <h2>My Notes</h2>
-
-      <button onClick={logout}>
-        Logout
-      </button>
-
-      <br /><br />
-
-      <input
-        placeholder="Title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-
-      <input
-        placeholder="Content"
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-      />
-
-      <button onClick={addNote}>
-        Add
-      </button>
-
-      <hr />
-
-      {notes.map((n) => (
-        <div key={n._id}>
-
-          <h3>{n.title}</h3>
-
-          <p>{n.content}</p>
-
-          <button onClick={() => deleteNote(n._id)}>
-            Delete
-          </button>
-
-          <hr />
-
-        </div>
-      ))}
-
-    </div>
-  );
-}
+   
