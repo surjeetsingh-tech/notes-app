@@ -8,7 +8,6 @@ export default function Notes() {
 
   const token = localStorage.getItem("token");
 
-  // Fetch Notes
   const fetchNotes = async () => {
     try {
       const res = await axios.get(
@@ -21,13 +20,11 @@ export default function Notes() {
       );
 
       setNotes(res.data);
-
     } catch (err) {
-      console.log(err.response?.data || err.message);
+      console.log(err);
     }
   };
 
-  // Add Note
   const addNote = async () => {
     try {
       await axios.post(
@@ -47,13 +44,11 @@ export default function Notes() {
       setContent("");
 
       fetchNotes();
-
     } catch (err) {
-      console.log(err.response?.data || err.message);
+      console.log(err);
     }
   };
 
-  // Delete Note
   const deleteNote = async (id) => {
     try {
       await axios.delete(
@@ -66,13 +61,11 @@ export default function Notes() {
       );
 
       fetchNotes();
-
     } catch (err) {
-      console.log(err.response?.data || err.message);
+      console.log(err);
     }
   };
 
-  // Logout
   const logout = () => {
     localStorage.removeItem("token");
     window.location.href = "/";
@@ -106,13 +99,13 @@ export default function Notes() {
 
       <hr />
 
-      {notes.map((n) => (
-        <div key={n._id}>
-          <h3>{n.title}</h3>
+      {notes.map((note) => (
+        <div key={note._id}>
+          <h3>{note.title}</h3>
 
-          <p>{n.content}</p>
+          <p>{note.content}</p>
 
-          <button onClick={() => deleteNote(n._id)}>
+          <button onClick={() => deleteNote(note._id)}>
             Delete
           </button>
 
