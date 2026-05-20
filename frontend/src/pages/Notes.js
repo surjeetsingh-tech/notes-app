@@ -18,7 +18,6 @@ export default function Notes() {
           },
         }
       );
-
       setNotes(res.data);
     } catch (err) {
       console.log(err);
@@ -29,10 +28,7 @@ export default function Notes() {
     try {
       await axios.post(
         "https://notes-app-r8xt.onrender.com/api/notes",
-        {
-          title,
-          content,
-        },
+        { title, content },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -42,7 +38,6 @@ export default function Notes() {
 
       setTitle("");
       setContent("");
-
       fetchNotes();
     } catch (err) {
       console.log(err);
@@ -59,7 +54,6 @@ export default function Notes() {
           },
         }
       );
-
       fetchNotes();
     } catch (err) {
       console.log(err);
@@ -102,7 +96,6 @@ export default function Notes() {
       {notes.map((note) => (
         <div key={note._id}>
           <h3>{note.title}</h3>
-
           <p>{note.content}</p>
 
           <button onClick={() => deleteNote(note._id)}>
