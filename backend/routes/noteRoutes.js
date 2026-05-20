@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const Note = require("../models/Note");
-const authMiddleware = require("../middleware/authMiddleware");
+const authMiddleware = require("../middleware/authmiddleware");
 
 
 // CREATE NOTE
